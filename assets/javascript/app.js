@@ -44,12 +44,16 @@ var questionsArray = [
     }
 ];
 
+
+
+//THIS IS THE GAME OBJECT---it holds most of the game function
 var game = {
     questions: questionsArray,
     currentQuestion: 0,
     counter: counterStartNumber,
     correct: 0,
     incorrect: 0,
+
     countdown: function () {
         var currentCountdown = counterStartNumber;
         var timer = setInterval(decrement, 1000);
@@ -58,15 +62,64 @@ var game = {
             currentCountdown--;
             $("#counterDisplay").text(currentCountdown);
             if (currentCountdown == 0) {
-                alert("Time is up!");
+                console.log("Time is up!");
                 clearInterval(timer);
+                timeUp();
             }
         }
-    },
+    },//end of COUNTDOWN
+    
+    loadQuestion: function(){
 
-}
+    },//end of LOAD QUESTION
 
-game.countdown();
+    nextQuestion: function(){
+
+    },//end of NEXT QUESTION
+    
+    timeUp: function(){
+
+    },//end of TIMEUP
+
+    results: function(){
+
+    },//end of RESULTS
+
+    clicked: function(){
+
+    },//end of CLICKED
+
+    answerIncorrectly: function(){
+
+    },//end of ANSWERINCORRECTLY
+
+    answerCorrectly: function(){
+
+    },//end of ANSWERCORRECTLY
+
+    reset: function(){
+
+    }//end of RESET
+
+}//end of GAME object
+
+
+//THESE ARE THE CLICK EVENTS
+//Start Button
+$(document).on("click", "#start", function(){
+    console.log("You clicked start.");
+    //hide welcome
+    $("#welcome").attr("style","display: none");
+    //display timer
+    $("#scoreboard").attr("style","display: ");
+    $("#counterDisplay").text(counterStartNumber);
+
+    //game.loadQuestion();
+});
+
+//Answer Button
+
+//Restart Button
 
 
 
