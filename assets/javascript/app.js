@@ -240,8 +240,12 @@ $(document).on("click", "#start", function () {
 //Answer Button
 $(document).on("click", ".answer-button", function (event) {
 
-
-       console.log(event.target.nodeName);
+    $( "button" ).click(function() {
+        var vl = $("div").attr(value);
+        console.log(vl);
+      });
+      
+       
     game.clicked();
 });
 
