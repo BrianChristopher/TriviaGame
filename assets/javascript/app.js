@@ -1,7 +1,7 @@
 //SET GLOBAL VARIABLES
 
 var card = $("#build");
-var counterStartNumber = 7;
+var counterStartNumber = 3;
 var timer = null;
 
 
@@ -57,60 +57,86 @@ var game = {
             }
         }
     },//end of COUNTDOWN
-    
-    loadQuestion: function(){
+
+    loadQuestion: function () {
         console.log("The loadQuestion function has been called.");
         game.countdown();
         var question = $("<h3>").text(this.questions[this.currentQuestion].q);
         $("#build").append(question);
 
-        for (i = 0; i<this.questions[this.currentQuestion].a.length; i++){
+        for (i = 0; i < this.questions[this.currentQuestion].a.length; i++) {
             console.log(this.questions[this.currentQuestion].a[i]);
 
-            var answerChoice = $("<button>").text(this.questions[this.currentQuestion].a[i]).attr({type: "button", class: "btn btn-outline-secondary text-left w-100 mt-1"});
+            var answerChoice = $("<button>").text(this.questions[this.currentQuestion].a[i]).attr({ type: "button", class: "answer-button btn btn-outline-secondary text-left w-100 mt-1" });
             $("#build").append(answerChoice);
-
         }
-
-
-
-    
-
-        
-
     },//end of LOAD QUESTION
 
-    nextQuestion: function(){
+    nextQuestion: function () {
         console.log("The nextQuestion function has been called.");
+        this.counter = counterStartNumber;
+        //Clear question & answers
+        $("#build").text("");
+        //Update scoreboard
+        $("#counterDisplay").text(counterStartNumber);
+        $("#correct").text("Correct: " + game.correct);
+        $("#incorrect").text("Wrong: " + game.incorrect);
+        this.currentQuestion++;
+        this.loadQuestion();
+
 
     },//end of NEXT QUESTION
-    
-    timeUp: function(){
+
+    timeUp: function () {
         console.log("The timeUp function has been called.");
+        clearInterval(timer);
+        //Update scoreboard
+        $("#counterDisplay").text(counterStartNumber);
+        $("#correct").text("Correct: " + game.correct);
+        $("#incorrect").text("Wrong: " + game.incorrect);
+        //Clear question & answers
+        $("#build").text("");
+        //Reshow current question
+        var question = $("<h3>").text(this.questions[this.currentQuestion].q);
+        $("#build").append(question);
+        //Time-up Notice
+        var answerChoice = $("<p>").text("TIME IS UP!").attr("class", "alert alert-danger");
+        $("#build").append(answerChoice);
+
+        //Show correct answer
+        var answerChoice = $("<p>").text(this.questions[this.currentQuestion].correct).attr("class", "alert alert-info");
+        $("#build").append(answerChoice);
+        //Show image
+        var correctImage = $("<img>").attr({"src":this.questions[this.currentQuestion].image, "class":"img-thumbnail"})
+        $("#imageHere").append(correctImage);
+
+
+    
+
 
     },//end of TIMEUP
 
-    results: function(){
+    results: function () {
         console.log("The results function has been called.");
 
     },//end of RESULTS
 
-    clicked: function(){
+    clicked: function () {
         console.log("The click function has been called.");
 
     },//end of CLICKED
 
-    answerIncorrectly: function(){
+    answerIncorrectly: function () {
         console.log("The answerInncorrectly function has been called.");
 
     },//end of ANSWERINCORRECTLY
 
-    answerCorrectly: function(){
+    answerCorrectly: function () {
         console.log("The answerCorrectly function has been called.");
 
     },//end of ANSWERCORRECTLY
 
-    reset: function(){
+    reset: function () {
         console.log("The reset function has been called.");
 
     }//end of RESET
@@ -120,18 +146,25 @@ var game = {
 
 //THESE ARE THE CLICK EVENTS
 //Start Button
-$(document).on("click", "#start", function(){
+$(document).on("click", "#start", function () {
     console.log("You clicked start.");
     //hide welcome
-    $("#welcome").attr("style","display: none");
+    $("#welcome").attr("style", "display: none");
     //display timer
-    $("#scoreboard").attr("style","display:");
+    $("#scoreboard").attr("style", "display:");
     $("#counterDisplay").text(counterStartNumber);
-    //game.loadQuestion();
+    //display scores
+    $("#correct").text("Correct: " + game.correct);
+    $("#incorrect").text("Wrong: " + game.incorrect);
+    //Load first question
     game.loadQuestion();
 });
 
 //Answer Button
+$(document).on("click", ".answer-button", function () {
+    console.log("You clicked an answer button.");
+    game.clicked();
+});
 
 //Restart Button
 
