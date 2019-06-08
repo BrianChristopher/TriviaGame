@@ -1,7 +1,7 @@
 //SET GLOBAL VARIABLES
 
 var card = $("#build");
-var counterStartNumber = 30;
+var counterStartNumber = 7;
 var timer = null;
 
 
@@ -10,36 +10,24 @@ var timer = null;
 
 var questionsArray = [
 
-    question1 = {
-        Q: "What color is the sky?",
-        responses: {
-            A: { choice: "Blue", correct: true },
-            B: { choice: "Green", correct: false },
-            C: { choice: "Purple", correct: false },
-            D: { choice: "Orange", correct: false }
-        },
+    question0 = {
+        q: "What color is the sky?",
+        a: ["Blue", "Green", "Purple", "Orange"],
+        correct: "Blue",
         image: "assets/images/CrystalCox.jpg"
     },
 
-    question2 = {
-        Q: "What is the best beverage?",
-        responses: {
-            A: { choice: "Water", correct: false },
-            B: { choice: "Ice water", correct: false },
-            C: { choice: "Warm water", correct: false },
-            D: { choice: "Beer", correct: true }
-        },
+    question1 = {
+        q: "What is the best beverage?",
+        a: ["Water", "Ice water", "Warm water", "Beer"],
+        correct: "Beer",
         image: "assets/images/CrystalEastman.jpeg"
     },
 
-    question3 = {
-        Q: "What state do you live in?",
-        responses: {
-            A: { choice: "Minnesota", correct: false },
-            B: { choice: "Mississippi", correct: false },
-            C: { choice: "Confusion", correct: true },
-            D: { choice: "Florida", correct: false }
-        },
+    question2 = {
+        q: "What state do you live in?",
+        a: ["Minnesota", "Mississippi", "Confusion", "Florida"],
+        correct: "Confusion",
         image: "assets/images/CrystalReed.jpg"
     }
 ];
@@ -55,6 +43,7 @@ var game = {
     incorrect: 0,
 
     countdown: function () {
+        console.log("The countdown function has been called.");
         var currentCountdown = counterStartNumber;
         var timer = setInterval(decrement, 1000);
         $("#counterDisplay").text(currentCountdown);
@@ -64,40 +53,65 @@ var game = {
             if (currentCountdown == 0) {
                 console.log("Time is up!");
                 clearInterval(timer);
-                timeUp();
+                game.timeUp();
             }
         }
     },//end of COUNTDOWN
     
     loadQuestion: function(){
+        console.log("The loadQuestion function has been called.");
+        game.countdown();
+        var question = $("<h3>").text(this.questions[this.currentQuestion].q);
+        $("#build").append(question);
+
+        for (i = 0; i<this.questions[this.currentQuestion].a.length; i++){
+            console.log(this.questions[this.currentQuestion].a[i]);
+
+            var answerChoice = $("<button>").text(this.questions[this.currentQuestion].a[i]).attr({type: "button", class: "btn btn-outline-secondary text-left w-100 mt-1"});
+            $("#build").append(answerChoice);
+
+        }
+
+
+
+    
+
+        
 
     },//end of LOAD QUESTION
 
     nextQuestion: function(){
+        console.log("The nextQuestion function has been called.");
 
     },//end of NEXT QUESTION
     
     timeUp: function(){
+        console.log("The timeUp function has been called.");
 
     },//end of TIMEUP
 
     results: function(){
+        console.log("The results function has been called.");
 
     },//end of RESULTS
 
     clicked: function(){
+        console.log("The click function has been called.");
 
     },//end of CLICKED
 
     answerIncorrectly: function(){
+        console.log("The answerInncorrectly function has been called.");
 
     },//end of ANSWERINCORRECTLY
 
     answerCorrectly: function(){
+        console.log("The answerCorrectly function has been called.");
 
     },//end of ANSWERCORRECTLY
 
     reset: function(){
+        console.log("The reset function has been called.");
 
     }//end of RESET
 
@@ -111,10 +125,10 @@ $(document).on("click", "#start", function(){
     //hide welcome
     $("#welcome").attr("style","display: none");
     //display timer
-    $("#scoreboard").attr("style","display: ");
+    $("#scoreboard").attr("style","display:");
     $("#counterDisplay").text(counterStartNumber);
-
     //game.loadQuestion();
+    game.loadQuestion();
 });
 
 //Answer Button
