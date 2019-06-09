@@ -11,11 +11,12 @@ var timer = null;
 var questionsArray = [
 
     question0 = {
-        q: "What color is the sky?",
-        a: ["Blue", "Green", "Purple", "Orange"],
-        value: ["correct", "incorrect", "incorrect", "incorrect"],
-        correct: "Blue",
-        image: "assets/images/sky.jpg"
+        q: "What song plays in the graveyard scene of the Magic Kingdom’s “Haunted Mansion”?",
+        a: ["Poor Unfortunate Souls", "I Ain't Got No Body", "Grim Grinning Ghosts", "Yo Ho (A Pirate's Life for Me)"],
+        value: ["incorrect", "incorrect", "correct", "incorrect"],
+        correct: "Grim Grinning Ghosts",
+        image: "assets/images/HauntedMansionExt.jpg",
+        media: "assets/media/grimGrinningGhosts1.mp3"
     },
 
     question1 = {
@@ -118,6 +119,16 @@ var game = {
         }
     },//end of LOAD QUESTION
 
+
+    //play sound
+    playAudioSample: function () {
+        //load mp3 into browser
+        var sample = $("<audio>").attr({ src: this.questions[this.currentQuestion].media, type: "audio/mpeg", id: "clip" });
+        $("#build").append(sample);
+        //play the clip
+        clip.play()
+    },
+
     nextQuestion: function () {
         console.log("The nextQuestion function has been called.");
         this.counter = counterStartNumber;
@@ -175,7 +186,9 @@ var game = {
         //Display results
         var correctResults = $("<h4>").text("Correct responses: " + game.correct);
         var inncorrectResults = $("<h4>").text("Incorrect responses: " + game.incorrect);
-        $("#build").append(correctResults, inncorrectResults);
+        var percentage = ((game.correct / (game.correct + game.incorrect)) * 100).toFixed(2);
+        var percentageResults = $("<h4>").text("You scored " + percentage + "%.");
+        $("#build").append(correctResults, inncorrectResults, percentageResults);
 
 
         //Display restart button
@@ -183,10 +196,6 @@ var game = {
             { class: "btn btn-primary btn-lg", id: "restart", role: "button" }
         );
         $("#build").append(restartButton);
-
-
-
-
 
     },//end of RESULTS
 
@@ -221,15 +230,19 @@ var game = {
         var correctImage = $("<img>").attr({ "src": this.questions[this.currentQuestion].image, "class": "img-thumbnail" })
         $("#imageHere").append(correctImage);
 
+        //play sample
+        game.playAudioSample();
+
+
         console.log("CURRENT QUESTION: " + game.currentQuestion);
         console.log("game.questions.length: " + game.questions.length);
 
         if (game.currentQuestion + 1 == game.questions.length) {
-            setTimeout(function () { game.results(); }, 3000);
+            setTimeout(function () { game.results(); }, 5000);
         }
 
         else {
-            setTimeout(function () { game.nextQuestion(); }, 3000);
+            setTimeout(function () { game.nextQuestion(); }, 5000);
         }
 
     },//end of ANSWERINCORRECTLY
@@ -259,26 +272,26 @@ var game = {
         var correctImage = $("<img>").attr({ "src": this.questions[this.currentQuestion].image, "class": "img-thumbnail" })
         $("#imageHere").append(correctImage);
 
+        //play sample
+        game.playAudioSample();
+
         console.log("CURRENT QUESTION: " + game.currentQuestion);
         console.log("game.questions.length: " + game.questions.length);
 
         if (game.currentQuestion + 1 == game.questions.length) {
-            setTimeout(function () { game.results(); }, 3000);
+            setTimeout(function () { game.results(); }, 5000);
         }
 
         else {
-            setTimeout(function () { game.nextQuestion(); }, 3000);
+            setTimeout(function () { game.nextQuestion(); }, 5000);
         }
 
     },//end of ANSWERCORRECTLY
 
-    reset: function () {
-        console.log("The reset function has been called.");
-
-
-
-
-    }//end of RESET
+    // reset: function () {
+    //     console.log("The reset function has been called.");
+    // }//end of RESET
+    // The reset function was not used.  This was coded into the restart button.
 
 }//end of GAME object
 
