@@ -10,45 +10,67 @@ var timer = null;
 
 var questionsArray = [
 
-    question0 = {
+    question1 = {
         q: "What song plays in the graveyard scene of the Magic Kingdom’s “Haunted Mansion”?",
         a: ["Poor Unfortunate Souls", "I Ain't Got No Body", "Grim Grinning Ghosts", "Yo Ho (A Pirate's Life for Me)"],
         value: ["incorrect", "incorrect", "correct", "incorrect"],
         correct: "Grim Grinning Ghosts",
         image: "assets/images/HauntedMansionExt.jpg",
-        media: "assets/media/grimGrinningGhosts1.mp3"
-    },
-
-    question1 = {
-        q: "What is the best beverage?",
-        a: ["Water", "Ice water", "Warm water", "Beer"],
-        value: ["incorrect", "incorrect", "incorrect", "correct"],
-        correct: "Beer",
-        image: "assets/images/beer.jpg"
+        media: "assets/media/grimGrinningGhosts2.mp3"
     },
 
     question2 = {
-        q: "What state do you live in?",
-        a: ["Minnesota", "Mississippi", "Confusion", "Florida"],
+        q: 'According to the song "Grim Grinning Ghosts," what do grim grinning ghosts come out to do?',
+        a: ["Terrorize", "Harmonize", "Socialize", "Scare your eyes"],
         value: ["incorrect", "incorrect", "correct", "incorrect"],
-        correct: "Confusion",
-        image: "assets/images/CrystalReed.jpg"
+        correct: "Socialize",
+        image: "assets/images/SingingBusts.jpg",
+        media: "assets/media/grimGrinningGhosts1.mp3"
     },
 
     question3 = {
-        q: "What color is Big Bird?",
-        a: ["Red", "Orange", "Yellow", "Blue"],
-        value: ["incorrect", "incorrect", "correct", "incorrect"],
-        correct: "Yellow",
-        image: "assets/images/bigBird.jpg"
+        q: 'At which Magic Kingdom attraction can you hear the song "You Can Fly! You Can Fly! You Can Fly!"?',
+        a: ["Dumbo the Flying Elephant", "The Barnstormer", "The Magic Carpets of Aladdin", "Pete Pan's Flight"],
+        value: ["incorrect", "incorrect", "incorrect", "correct"],
+        correct: "Pete Pan's Flight",
+        image: "assets/images/PeterPansFlight.jpg",
+        media: "assets/media/YouCanFly.mp3"
     },
 
     question4 = {
-        q: "What color is Cookie Monster?",
-        a: ["Red", "Orange", "Yellow", "Blue"],
+        q: "Which classic Sherman brother's tune will you hear while inside “Walt Disney's Enchanted Tiki Room”?",
+        a: ["There's a Great Big Beautiful Tomorrow", "It's a Small World (After All)", "The Tiki, Tiki, Tiki Room", "Feed The Birds"],
+        value: ["incorrect", "incorrect", "correct", "incorrect"],
+        correct: "The Tiki, Tiki, Tiki Room",
+        image: "assets/images/EnchantedTikiRoom.jpg",
+        media: "assets/media/TikiRoom.mp3"
+    },
+
+    question5 = {
+        q: "“Zip-A-Dee-Doo-Dah” plays in the finale scene of what attaction?",
+        a: ["Splash Mountain", "County Bear Jamboree", "The Hall of Presidents", "The Many Adventures of Winnie the Pooh"],
+        value: ["correct", "incorrect", "incorrect", "incorrect"],
+        correct: "Splash Mountain",
+        image: "assets/images/SplashMountain.jpg",
+        media: "assets/media/Zip-A-Dee-Doo-Dah.mp3"
+    },
+
+    question6 = {
+        q: "Which song provides part of the soundtrack to the “Pirates of the Caribbean” attraction?",
+        a: ["Yo Ho (A Pirate's Life for Me)", "A Pirate Looks at Forty", "Pirate Song", "When You Wish Upon A Star"],
+        value: ["correct", "incorrect", "incorrect", "incorrect"],
+        correct: "Yo Ho (A Pirate's Life for Me)",
+        image: "assets/images/Pirates.jpg",
+        media: "assets/media/Yo-Ho.mp3"
+    },
+
+    question7 = {
+        q: "BONUS: What is the name of the theme music of the old Main Street Electrical Parade soundtrack?",
+        a: ["Happily Ever After", "The Mickey Mouse Club March", "Classical Gas", "Baroque Hoedown"],
         value: ["incorrect", "incorrect", "incorrect", "correct"],
-        correct: "Blue",
-        image: "assets/images/cookieMonster.jpg"
+        correct: "Baroque Hoedown",
+        image: "assets/images/ElectricalParade.jpg",
+        media: "assets/media/ElectricalParade.mp3"
     }
 
 ];
